@@ -1,17 +1,17 @@
 package br.databasereports.entity;
 
-import java.util.List;
-
 import lombok.Data;
 
 @Data
-public class Universidade {
+public class Disciplina {
 
 	private int codigo;
 	
 	private String nome;
 	
-	private List<Faculdade> faculdades;
+	private String descricao;
 	
+	private int cargaHoraria;
 	
+	private Departamento departamento;
 }
