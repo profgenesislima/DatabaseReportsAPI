@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="departamento_has_professor" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="03bbad3f-d28a-4a39-aae2-64080e7ff993">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select e.nome as departamento, count(p.codigo) as qtde_professores from disciplina d inner join departamento e on d.cod_departamento = e.codigo
+ inner join professor p on d.cod_professor = p.codigo
+group by e.nome]]>
+	</queryString>
+	<field name="departamento" class="java.lang.String"/>
+	<field name="qtde_professores" class="java.lang.Long"/>
+	<variable name="qtde_professores_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{qtde_professores}]]></variableExpression>
+	</variable>
+	<variable name="qtde_professores_2" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{qtde_professores}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="64" y="25" width="405" height="36" uuid="9690ef19-36ce-42de-b11f-4fe8ea9a2779"/>
+				<textElement>
+					<font size="28"/>
+				</textElement>
+				<text><![CDATA[Professores por Departamento]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="279" y="0" width="115" height="20" uuid="bb899b58-fdaf-4c96-98be-e4df845a59f5"/>
+				<text><![CDATA[Departamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="394" y="0" width="132" height="20" uuid="00c2fa04-6176-41c9-940a-3cc17a285eac"/>
+				<text><![CDATA[Quantidade de Professores]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="279" y="0" width="115" height="20" uuid="79b1aedc-bfd8-4066-bc2b-d3e7a41198f8"/>
+				<textFieldExpression><![CDATA[$F{departamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="426" y="1" width="100" height="20" uuid="72a235f3-5b01-4054-8b84-5e195b4ce1b8"/>
+				<textFieldExpression><![CDATA[$F{qtde_professores}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="426" y="0" width="100" height="20" uuid="e5331e1e-fd75-426a-b2bc-c20e04aee608"/>
+				<textFieldExpression><![CDATA[$V{qtde_professores_2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="6b866a7e-04c8-452d-b7fd-f254e9007594"/>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
