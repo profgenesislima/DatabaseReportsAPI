@@ -10,9 +10,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.databasereports.db.connection.PostgresConnection;
 import net.sf.jasperreports.engine.JRException;
@@ -33,13 +34,15 @@ public class HomeController {
 	}
 	
 	
-	 @RequestMapping(value = "/report/{nome_relatorio}", method = RequestMethod.GET,
+	 @RequestMapping(value = "/report/{report_name}/{param}", method = RequestMethod.GET,
 	            produces = MediaType.APPLICATION_PDF_VALUE)
-	    public ResponseEntity<InputStreamResource> generateAndDeliverReport() throws IOException, JRException {
+	    public ResponseEntity<InputStreamResource> generateAndDeliverReport(@PathVariable("report_name") String nomeRelatorio, @PathVariable("param") String matricula) throws IOException, JRException {
 
 	        
 
-		  String report = "departamento_has_professor";
+		    //String report = "departamento_has_professor";
+		 System.out.println("REPORT "+nomeRelatorio);     
+		 String report = nomeRelatorio;
 			
 			JasperReport rep = JasperCompileManager.compileReport(report+".jrxml");
 			
@@ -68,4 +71,6 @@ public class HomeController {
 	                .contentType(MediaType.APPLICATION_PDF)
 	                .body(new InputStreamResource(new FileInputStream(report+".pdf")));
 	    }
+	 
+	 
 }

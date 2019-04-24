@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="historico_aluno" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a7c61066-3dff-4bdb-89bb-6a8edab373ef">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="matricula" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select a.codigo, a.nome as Aluno, d.nome as Disciplina, ad.av1, ad.av2, ad.nota_final, (case when ((ad.av1+ad.av2)/2) >=7 then 'APROVADO' else 'REPROVADO' END ) as situacao from aluno a inner join aluno_disciplina ad on a.codigo = ad.cod_aluno inner join disciplina d on
+ad.cod_disciplina = d.codigo
+where a.codigo=14;]]>
+	</queryString>
+	<field name="codigo" class="java.lang.Integer"/>
+	<field name="aluno" class="java.lang.String"/>
+	<field name="disciplina" class="java.lang.String"/>
+	<field name="av1" class="java.math.BigDecimal"/>
+	<field name="av2" class="java.math.BigDecimal"/>
+	<field name="nota_final" class="java.lang.Integer"/>
+	<field name="situacao" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="242" y="32" width="100" height="20" uuid="142ef5ac-1cd5-47df-9932-5febcac5c719"/>
+				<text><![CDATA[Histórico do Aluno]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="48" height="20" uuid="f217b846-2e13-4f6f-8d79-d12d4310f649"/>
+				<text><![CDATA[Matrícula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="0" width="100" height="20" uuid="e497ecf2-cfe9-482d-b670-27b44ee22db1"/>
+				<text><![CDATA[Aluno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="0" width="32" height="20" uuid="a24be115-337e-4159-ac12-27cc2fec28ef"/>
+				<text><![CDATA[AV1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="386" y="0" width="36" height="20" uuid="b085a8bc-9270-4a30-ade8-90f162884503"/>
+				<text><![CDATA[AV2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="472" y="0" width="83" height="20" uuid="c1d3b9d4-438e-40e4-8d07-d7296b86281b"/>
+				<text><![CDATA[Situação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="422" y="0" width="50" height="20" uuid="61fdfdbf-3d09-4a47-9ec6-33b69f3dc05d"/>
+				<text><![CDATA[Média]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="148" y="0" width="194" height="20" uuid="1de7fed5-8ff4-4715-a493-03ca76f52e83"/>
+				<text><![CDATA[Disciplina]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="48" height="20" uuid="aff01a0b-b5c4-4a2d-98a4-6a0bd0ab23fd"/>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="48" y="0" width="100" height="20" uuid="9bb25c27-d75b-4090-a5b0-61451120f92f"/>
+				<textFieldExpression><![CDATA[$F{aluno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="0" width="32" height="20" uuid="b7b51f54-e133-4e99-8151-0c69c4040407"/>
+				<textFieldExpression><![CDATA[$F{av1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="386" y="0" width="36" height="20" uuid="2a063df7-7965-4bbe-886f-07e7415c2a38"/>
+				<textFieldExpression><![CDATA[$F{av2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="472" y="0" width="83" height="20" uuid="da47d55c-cba1-4d69-9389-eebe32566e12"/>
+				<textFieldExpression><![CDATA[$F{situacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="0" width="50" height="20" uuid="a3af905a-6c4d-445c-a9f2-daa82c84a6f6"/>
+				<textFieldExpression><![CDATA[$F{nota_final}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="148" y="0" width="206" height="20" uuid="684e5e72-dbe2-4253-9cf4-2b89763562ef"/>
+				<textFieldExpression><![CDATA[$F{disciplina}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
