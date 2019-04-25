@@ -8,10 +8,20 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PostgresConnection implements DatabaseConnection {
-	private Connection con ;
+	
+	public static DatabaseConnection instance = new PostgresConnection();
+	
+	
+	private Connection con;
+	
+	
+	public PostgresConnection() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
 	@Bean
-	public Connection connect() {
+	public synchronized Connection connect() {
 		try {
 			if(con == null || !con.isClosed()) {
 			Class.forName("org.postgresql.Driver");
@@ -26,16 +36,21 @@ public class PostgresConnection implements DatabaseConnection {
 		return con;
 	}
 
-	@Override
-	public void open() {
-		// TODO Auto-generated method stub
-
+	
+	public static DatabaseConnection getInstance() {
+		return instance;
 	}
 
 	@Override
-	public void close() {
-		// TODO Auto-generated method stub
-
+	public boolean isClosed() {
+		  boolean isClosed = false;
+		try {
+			   isClosed = con.isClosed();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return isClosed;
 	}
 
 }

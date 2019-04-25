@@ -50,7 +50,7 @@ public class HomeController {
 		 
 		    Map<String, Object> params = new HashMap<String, Object>();
 
-		    PostgresConnection con  = new PostgresConnection();
+		    PostgresConnection con  = (PostgresConnection) PostgresConnection.getInstance();
 			
 		    
 
