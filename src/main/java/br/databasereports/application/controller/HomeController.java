@@ -57,7 +57,7 @@ public class HomeController {
 		    System.out.println("PARAMS: "+params);
 		    
 
-		    PostgresConnection con  = new PostgresConnection();
+		    PostgresConnection con  = (PostgresConnection) PostgresConnection.getInstance();
 			
 
 			JasperPrint jasperPrint = JasperFillManager.fillReport(rep,

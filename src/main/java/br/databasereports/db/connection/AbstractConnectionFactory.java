@@ -1,6 +1,7 @@
 package br.databasereports.db.connection;
 
-public class AbstractConnectionFactory {
+public abstract class AbstractConnectionFactory {
 
+	abstract DatabaseConnection getConnection(DatabaseSystem databaseSystem);
 	
 }

@@ -5,7 +5,8 @@ import java.sql.Connection;
 public interface DatabaseConnection {
 
 	Connection connect();
-	void open();
-	void close();
+//	void open();
+//	void close();
+	boolean isClosed();
 	
 }

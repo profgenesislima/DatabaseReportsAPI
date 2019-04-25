@@ -1,7 +1,9 @@
 package br.estacio.report.tests.entity;
 
+
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 
@@ -43,7 +45,7 @@ public class AlunoTests {
 	    aluno.setTelefones(Arrays.asList(at1,at2));
 	    
 	    assertTrue(aluno.getTelefones().size()>0);
-	    
+//	    
 	    
 	    
 	    
