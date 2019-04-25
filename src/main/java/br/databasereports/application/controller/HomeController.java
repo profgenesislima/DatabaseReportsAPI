@@ -38,9 +38,7 @@ public class HomeController {
 	            produces = MediaType.APPLICATION_PDF_VALUE)
 	    public ResponseEntity<InputStreamResource> generateAndDeliverReport(@PathVariable("report_name") String nomeRelatorio, @PathVariable("param") String matricula) throws IOException, JRException {
 
-	        
-
-		    //String report = "departamento_has_professor";
+	        //String report = "departamento_has_professor";
 		 System.out.println("REPORT "+nomeRelatorio);     
 		 String report = nomeRelatorio;
 			
@@ -49,10 +47,18 @@ public class HomeController {
 			System.out.println("JASPER REPORT "+rep.getName());
 		 
 		    Map<String, Object> params = new HashMap<String, Object>();
+		    
+		    
+		    System.out.println("Matricula: "+Integer.parseInt(matricula));
+
+		    
+		    params.put("matricula", Integer.parseInt(matricula));
+		    
+		    System.out.println("PARAMS: "+params);
+		    
 
 		    PostgresConnection con  = new PostgresConnection();
 			
-		    
 
 			JasperPrint jasperPrint = JasperFillManager.fillReport(rep,
 					params, con.connect());

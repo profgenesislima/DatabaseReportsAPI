@@ -9,7 +9,7 @@
 	<queryString>
 		<![CDATA[select a.codigo, a.nome as Aluno, d.nome as Disciplina, ad.av1, ad.av2, ad.nota_final, (case when ((ad.av1+ad.av2)/2) >=7 then 'APROVADO' else 'REPROVADO' END ) as situacao from aluno a inner join aluno_disciplina ad on a.codigo = ad.cod_aluno inner join disciplina d on
 ad.cod_disciplina = d.codigo
-where a.codigo=14;]]>
+where a.codigo=$P{matricula};]]>
 	</queryString>
 	<field name="codigo" class="java.lang.Integer"/>
 	<field name="aluno" class="java.lang.String"/>
