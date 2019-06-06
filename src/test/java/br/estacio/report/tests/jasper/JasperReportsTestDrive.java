@@ -24,7 +24,7 @@ public class JasperReportsTestDrive {
 	 
 	    Map<String, Object> params = new HashMap<String, Object>();
 
-	    PostgresConnection con  = new PostgresConnection();
+	    PostgresConnection con  = (PostgresConnection) PostgresConnection.getInstance();
 		
 	    //JasperFillManager.fillReportToFile(report+".jasper", params);
 

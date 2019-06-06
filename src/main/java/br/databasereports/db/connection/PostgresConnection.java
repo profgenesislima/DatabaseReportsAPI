@@ -9,13 +9,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PostgresConnection implements DatabaseConnection {
 	
-	public static DatabaseConnection instance = new PostgresConnection();
+	private static DatabaseConnection instance = new PostgresConnection();
 	
 	
 	private Connection con;
 	
 	
-	public PostgresConnection() {
+	private PostgresConnection() {
 		// TODO Auto-generated constructor stub
 	}
 	
